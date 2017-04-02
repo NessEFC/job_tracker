@@ -12,7 +12,8 @@ require 'rails_helper'
 RSpec.feature "User deletes a job from a company" do
   scenario "and the job no longer appears on the company's list of jobs" do
     company = Company.create!(name: "Starbucks")
-    job = company.jobs.create!(title: "Developer", description: "Cool job.", level_of_interest: 50, city: "Indianapolis")
+    category = Category.create!(title: "Agile")
+    job = company.jobs.create!(title: "Developer", description: "Cool job.", level_of_interest: 50, city: "Indianapolis", category_id: category.id)
 
     visit company_job_path(company, job)
     click_on "Delete"

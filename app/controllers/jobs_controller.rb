@@ -8,14 +8,14 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new()
+    @job = Job.new
   end
 
   def create
     @job = @company.jobs.new(job_params)
     if @job.save
       flash[:success] = "You created #{@job.title} at #{@company.name}"
-      redirect_to company_job_path(@company, @job)
+      redirect_to company_job_path(@company, @job, @category)
     else
       render :new
     end
@@ -52,6 +52,6 @@ class JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title, :description, :level_of_interest, :city)
+    params.require(:job).permit(:title, :description, :level_of_interest, :city, :category_id)
   end
 end
