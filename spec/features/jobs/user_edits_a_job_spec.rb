@@ -21,13 +21,13 @@ describe "User edits a job" do
     category = Category.create!(title: "Agile")
     job = company.jobs.create!(title: "Developer", description: "Cool job.", level_of_interest: 50, city: "Indianapolis", category_id: category.id)
 
-    visit company_job_path(company, job)
+    visit job_path(job)
     click_on "Edit Job"
     fill_in "job[title]", with: "Software Engineer"
     fill_in "job[level_of_interest]", with: 80
     click_on "Update Job"
 
-    expect(current_path).to eq(company_job_path(company, job))
+    expect(current_path).to eq(job_path(job))
     expect(page).to have_content("Starbucks")
     expect(page).to have_content("Software Engineer")
     expect(page).to have_content("Cool job.")

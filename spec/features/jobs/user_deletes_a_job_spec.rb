@@ -15,10 +15,10 @@ RSpec.feature "User deletes a job from a company" do
     category = Category.create!(title: "Agile")
     job = company.jobs.create!(title: "Developer", description: "Cool job.", level_of_interest: 50, city: "Indianapolis", category_id: category.id)
 
-    visit company_job_path(company, job)
+    visit job_path(job)
     click_on "Delete"
 
-    expect(current_path).to eq(company_jobs_path(company))
+    expect(current_path).to eq(company_path(company))
     expect(page).to_not have_content("Developer")
   end
 end
