@@ -7,4 +7,8 @@ All Jobs for <strong><%= @company.name %></strong><br><br>
 <% end %>
 </ul>
 
+<strong>Contacts:</strong></br>
+<%= render partial: 'companies/contact', collection: @company.contacts %>
+<%= render partial: 'contacts/form' %><br/><br/>
+
 <%= link_to "<< Back to All Companies", companies_path %>
